@@ -1,23 +1,23 @@
-package com.ordermanager.entity;
+package com.ordermanager.model;
 
 import java.util.Date;
 
 public class Order {
 	private Long id;
 	private Date creationDate;
-	private Item item;
+	private Long itemId;
 	private int quantity;
-	private User user;
+	private Long userId;
 
 	public Order() {
 	}
 
-	public Order(Long id, Date creationDate, Item item, int quantity, User user) {
+	public Order(Long id, Date creationDate, Long itemId, int quantity, Long userId) {
 		this.id = id;
 		this.creationDate = creationDate;
-		this.item = item;
+		this.itemId = itemId;
 		this.quantity = quantity;
-		this.user = user;
+		this.userId = userId;
 	}
 
 	public Long getId() {
@@ -36,12 +36,12 @@ public class Order {
 		this.creationDate = creationDate;
 	}
 
-	public Item getItem() {
-		return item;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
 	public int getQuantity() {
@@ -52,12 +52,12 @@ public class Order {
 		this.quantity = quantity;
 	}
 
-	public User getUser() {
-		return user;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

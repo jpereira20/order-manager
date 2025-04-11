@@ -1,4 +1,4 @@
-package com.ordermanager.entity;
+package com.ordermanager.model;
 
 public class Item {
 	private Long id;

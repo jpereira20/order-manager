@@ -1,21 +1,20 @@
-package com.ordermanager.entity;
+package com.ordermanager.model;
 
 import java.util.Date;
 
 public class StockMovement {
 	private Long id;
 	private Date creationDate;
-	private Item item;
+	private Long itemId;
 	private int quantity;
 
 	public StockMovement() {
 	}
 
-	public StockMovement(Long id, Date creationDate, Item item, int quantity) {
-		super();
+	public StockMovement(Long id, Date creationDate, Long itemId, int quantity) {
 		this.id = id;
 		this.creationDate = creationDate;
-		this.item = item;
+		this.itemId = itemId;
 		this.quantity = quantity;
 	}
 
@@ -35,12 +34,12 @@ public class StockMovement {
 		this.creationDate = creationDate;
 	}
 
-	public Item getItem() {
-		return item;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItem(Long itemId) {
+		this.itemId = itemId;
 	}
 
 	public int getQuantity() {
