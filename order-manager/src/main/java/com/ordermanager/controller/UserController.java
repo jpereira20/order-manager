@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,10 +26,7 @@ public class UserController {
 	private UserDAO userDao;
 
 	@POST
-	public Response createUser(String name, String email) {
-		User newUser = new User();
-		newUser.setName(name);
-		newUser.setEmail(email);
+	public Response createUser(User newUser) {
 		userDao.create(newUser);
 		return Response.status(Response.Status.CREATED).build();
 	}
@@ -53,5 +52,31 @@ public class UserController {
 	@Path("/by-email/{email}")
 	public User getUserByEmail(@PathParam("email") String email) {
 		return userDao.findByEmail(email);
+	}
+
+	@PUT
+	@Path("/{id}")
+	public Response updateUser(@PathParam("id") Long id, User updatedUser) {
+		User existing = userDao.findById(id);
+		if (existing == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+
+		existing.setName(updatedUser.getName());
+		existing.setEmail(updatedUser.getEmail());
+		userDao.update(existing);
+		return Response.ok().build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response deleteUser(@PathParam("id") Long id) {
+		User existing = userDao.findById(id);
+		if (existing == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+
+		userDao.delete(existing);
+		return Response.noContent().build();
 	}
 }

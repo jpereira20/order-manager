@@ -2,13 +2,14 @@ package com.ordermanager.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -27,12 +28,7 @@ public class OrderController {
 	private OrderDAO orderDAO;
 
 	@POST
-	public Response createOrder(Long itemId, int quantity, Long userId) {
-		Order newOrder = new Order();
-		newOrder.setCreationDate(new Date());
-		newOrder.setItemId(itemId);
-		newOrder.setQuantity(quantity);
-		newOrder.setUserId(userId);
+	public Response createOrder(Order newOrder) {
 		orderDAO.create(newOrder);
 		return Response.status(Response.Status.CREATED).build();
 	}
@@ -71,5 +67,34 @@ public class OrderController {
 	@Path("/by-quantity/{quantity}")
 	public List<Order> getOrdersByQuantity(@PathParam("quantity") int quantity) {
 		return orderDAO.findOrdersByQuantity(quantity);
+	}
+
+	@PUT
+	@Path("/{id}")
+	public Response updateOrder(@PathParam("id") Long id, Order updatedOrder) {
+		Order existingOrder = orderDAO.findById(id);
+		if (existingOrder == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+
+		existingOrder.setItemId(updatedOrder.getItemId());
+		existingOrder.setQuantity(updatedOrder.getQuantity());
+		existingOrder.setUserId(updatedOrder.getUserId());
+		existingOrder.setCreationDate(updatedOrder.getCreationDate());
+
+		orderDAO.update(existingOrder);
+		return Response.ok().build();
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public Response deleteOrder(@PathParam("id") Long id) {
+		Order existingOrder = orderDAO.findById(id);
+		if (existingOrder == null) {
+			return Response.status(Response.Status.NOT_FOUND).build();
+		}
+
+		orderDAO.delete(existingOrder);
+		return Response.noContent().build();
 	}
 }

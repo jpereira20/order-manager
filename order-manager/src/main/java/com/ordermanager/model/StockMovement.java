@@ -38,7 +38,7 @@ public class StockMovement {
 		return itemId;
 	}
 
-	public void setItem(Long itemId) {
+	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
 
