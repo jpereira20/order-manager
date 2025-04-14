@@ -44,14 +44,20 @@ public class OrderDAO extends Dao<Order> {
 	}
 
 	// Method for finding an item by ItemId
-	public List<Order> findOrdersByItemId(Long ItemId) {
-		return entityManager.createQuery("FROM Order WHERE item_id = :ItemId", Order.class)
-				.setParameter("userId", ItemId).getResultList();
+	public List<Order> findOrdersByItemId(Long itemId) {
+		return entityManager.createQuery("FROM Order WHERE item_id = :itemId", Order.class)
+				.setParameter("itemId", itemId).getResultList();
 	}
 
 	// Method for finding an item by creationDate
 	public List<Order> findOrdersByCreationDate(Date creationDate) {
 		return entityManager.createQuery("FROM Order WHERE creation_date = :creationDate", Order.class)
-				.setParameter("userId", creationDate).getResultList();
+				.setParameter("creationDate", creationDate).getResultList();
+	}
+
+	// Method for finding an item by quantity
+	public List<Order> findOrdersByQuantity(int quantity) {
+		return entityManager.createQuery("FROM Order WHERE quantity = :quantity", Order.class)
+				.setParameter("quantity", quantity).getResultList();
 	}
 }

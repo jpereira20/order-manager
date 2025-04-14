@@ -40,13 +40,18 @@ public class StockMovementDAO extends Dao<StockMovement> {
 	// Method for finding an item by creationDate
 	public List<StockMovement> findStockMovementsByCreationDate(Date creationDate) {
 		return entityManager.createQuery("FROM StockMovement WHERE creation_date = :creationDate", StockMovement.class)
-				.setParameter("userId", creationDate).getResultList();
+				.setParameter("creationDate", creationDate).getResultList();
 	}
 
 	// Method for finding an item by ItemId
-	public List<StockMovement> findStockMovementsByItemId(Long ItemId) {
-		return entityManager.createQuery("FROM Order WHERE item_id = :ItemId", StockMovement.class)
-				.setParameter("userId", ItemId).getResultList();
+	public List<StockMovement> findStockMovementsByItemId(Long itemId) {
+		return entityManager.createQuery("FROM Order WHERE item_id = :itemId", StockMovement.class)
+				.setParameter("itemId", itemId).getResultList();
+	}
+
+	public List<StockMovement> findStockMovementsByQuantity(int quantity) {
+		return entityManager.createQuery("FROM Order WHERE quantity = :quantity", StockMovement.class)
+				.setParameter("quantity", quantity).getResultList();
 	}
 
 }

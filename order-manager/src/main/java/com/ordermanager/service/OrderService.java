@@ -57,9 +57,6 @@ public class OrderService {
 		if (totalAvailable >= neededQty) {
 			logger.info("Pedido " + order.getId() + " completo.");
 
-			// Aqui eventualmente adicionar lógica para marcar como completo ou associar os
-			// movimentos
-
 			sendOrderCompletionEmail(order.getUserId(), order);
 		} else {
 			logger.info("Stock insuficiente para completar o pedido: " + order.getId());
