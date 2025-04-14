@@ -1,2 +1,13 @@
-# order-manager
-This is a simple exercise, a simple order manager. You should develop an API where users can create and manage orders. Items can be ordered and orders are automatically fulfilled as soon as the item stock allows it.
+# Order Manager
+Este projeto é uma aplicação de gestão de encomendas construída com Java, Maven e PostgreSQL.
+
+Pré-requisitos
+Java JDK 8 ou superior
+
+Maven
+
+PostgreSQL
+
+Servidor de aplicações (GlassFish, WildFly, etc.)
+
+Postman (ou ferramenta semelhante para testar APIs)
