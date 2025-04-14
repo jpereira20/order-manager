@@ -8,8 +8,8 @@ import com.ordermanager.model.User;
 
 public class UserDAO extends Dao<User> {
 
-	public UserDAO(EntityManager entityManager, Class<User> entityClass) {
-		super(entityManager, entityClass);
+	public UserDAO(EntityManager entityManager) {
+		super(entityManager, User.class);
 	}
 
 	public void create(User user) {
@@ -30,6 +30,10 @@ public class UserDAO extends Dao<User> {
 
 	public void delete(User user) {
 		super.delete(user);
+	}
+
+	public void save(User entity) {
+		super.save(entity);
 	}
 
 	// Method for finding an item by name

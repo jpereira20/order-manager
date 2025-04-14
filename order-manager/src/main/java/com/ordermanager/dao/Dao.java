@@ -64,4 +64,21 @@ public abstract class Dao<T> {
 			e.printStackTrace();
 		}
 	}
+
+	public void save(T entity) {
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		try {
+			entityTransaction.begin();
+			if (entityManager.contains(entity) || entity.getClass().getMethod("getId").invoke(entity) != null) {
+			} else {
+				entityManager.persist(entity);
+			}
+			entityTransaction.commit();
+		} catch (Exception e) {
+			if (entityTransaction.isActive()) {
+				entityTransaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
 }

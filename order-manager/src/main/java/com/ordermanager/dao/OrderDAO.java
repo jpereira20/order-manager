@@ -9,8 +9,8 @@ import com.ordermanager.model.Order;
 
 public class OrderDAO extends Dao<Order> {
 
-	public OrderDAO(EntityManager entityManager, Class<Order> entityClass) {
-		super(entityManager, entityClass);
+	public OrderDAO(EntityManager entityManager) {
+		super(entityManager, Order.class);
 	}
 
 	public void create(Order order) {
@@ -31,6 +31,10 @@ public class OrderDAO extends Dao<Order> {
 
 	public void delete(Order order) {
 		super.delete(order);
+	}
+
+	public void save(Order entity) {
+		super.save(entity);
 	}
 
 	// Method for finding an item by userId

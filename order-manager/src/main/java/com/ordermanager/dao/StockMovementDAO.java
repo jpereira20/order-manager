@@ -9,8 +9,8 @@ import com.ordermanager.model.StockMovement;
 
 public class StockMovementDAO extends Dao<StockMovement> {
 
-	public StockMovementDAO(EntityManager entityManager, Class<StockMovement> entityClass) {
-		super(entityManager, entityClass);
+	public StockMovementDAO(EntityManager entityManager) {
+		super(entityManager, StockMovement.class);
 	}
 
 	public void create(StockMovement stockMovement) {
@@ -31,6 +31,10 @@ public class StockMovementDAO extends Dao<StockMovement> {
 
 	public void delete(StockMovement stockMovement) {
 		super.delete(stockMovement);
+	}
+
+	public void save(StockMovement entity) {
+		super.save(entity);
 	}
 
 	// Method for finding an item by creationDate
